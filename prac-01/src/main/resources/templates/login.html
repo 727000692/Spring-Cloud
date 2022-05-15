@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>用户登录</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 引入 Bootstrap -->
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+<div class="container">
+
+    <div class="row clearfix">
+        <div class="col-md-12 column">
+            <div class="page-header">
+                <h1>
+                    <small>简易设备资产管理系统</small>
+                </h1>
+            </div>
+        </div>
+    </div>
+    <h1 style="color: brown" th:text="${msg}"></h1>
+    <form th:action="@{/user/login}" method="post">
+
+        用户名：<input type="text" name="username" required><br><br><br>
+
+        用户密码：<input type="password" name="password" required><br><br><br>
+        <input type="submit" value="登录" class="btn btn-primary">&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <a class="btn btn-primary" th:href="@{/user/to_register}">注册</a>
+    </form>
+
+
+
+</div>
+
+</body>
+</html>

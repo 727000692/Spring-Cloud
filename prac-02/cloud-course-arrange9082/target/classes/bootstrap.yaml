@@ -1,0 +1,45 @@
+server:
+  port: 9082 #服务端口
+
+provider:
+  name: cloud-course # 服务提供者name
+
+spring:
+  application:
+    name: cloud-course-arrange #服务名
+  profiles:
+    active: dev # 开发环境
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+      config:
+        server-addr: 127.0.0.1:8848
+        file-extension: yaml
+        group: DEV_GROUP
+        namespace: 5e10a1c8-37e8-469f-9caa-e070243ceeaf
+    sentinel:
+      transport:
+        port: 8719
+        dashboard: localhost:8080
+      datasource:
+        ds1:
+          nacos:
+            server-addr: 127.0.0.1:8848
+            dataID: ${spring.application.name}
+            groupID: DEFAULT_GROUP
+            data-type: json
+            rule-type: flow
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
+
+
+
+
+
+

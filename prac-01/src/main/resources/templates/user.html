@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>普通用户页面</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 引入 Bootstrap -->
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+<body>
+
+<div class="container">
+
+    <div class="row clearfix">
+        <div class="col-md-12 column">
+            <div class="page-header">
+                <h1>
+                    <small>简易设备资产管理系统</small>
+                </h1>
+                <h1>
+                    <small>欢迎
+                        <span th:if="${session.user.type} == 1">普通用户</span>
+                        <span th:if="${session.user.type} == 0">管理员</span>
+                        【<span th:text="${session.user.name}"></span>】登录
+                    </small>
+                    <a class="btn btn-primary" th:href="@{/user/logout}">退出</a>
+                </h1>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="row clearfix">
+        <div class="col-md-12 column">
+            <table class="table table-hover table-striped">
+                <thead>
+                <tr>
+                    <th>序号</th>
+                    <th>资产编码</th>
+                    <th>名称</th>
+                    <th>价格</th>
+                    <th>存放地点</th>
+                    <th>领用人</th>
+                    <th>领用时间</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                <tr th:each="equip,equipStart:${equipments}">
+                    <td th:text="${equip.id}"></td>
+                    <td th:text="${equip.code}"></td>
+                    <td th:text="${equip.name}"></td>
+                    <td th:text="${equip.price}"></td>
+                    <td th:text="${equip.place}"></td>
+                    <td th:text="${equip.user_name}"></td>
+                    <td th:text="${equip.add_time}"></td>
+                </tr>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>

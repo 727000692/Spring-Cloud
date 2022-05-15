@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.prac01.dao.EquipmentMapper">
+
+    <insert id="addEquipment">
+        insert into equipment (name, description, code, add_time, price, place, user_name)
+        values (#{name},
+                #{description},
+                #{code},
+                #{add_time},
+                #{price},
+                #{place},
+                #{user_name});
+    </insert>
+    <delete id="deleteById">
+        delete
+        from equipment
+        where id = #{id};
+    </delete>
+    <select id="queryAll" resultType="com.example.prac01.entity.Equipment">
+        select *
+        from equipment;
+    </select>
+    <select id="queryByName" resultType="com.example.prac01.entity.Equipment">
+        select *
+        from equipment where user_name = #{user_name};
+    </select>
+</mapper>

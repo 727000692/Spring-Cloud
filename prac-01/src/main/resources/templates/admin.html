@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>管理员页面</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 引入 Bootstrap -->
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+<body>
+
+<div class="container">
+
+    <div class="row clearfix">
+        <div class="col-md-12 column">
+            <div class="page-header">
+                <h1>
+                    <small>简易设备资产管理系统</small>
+                </h1>
+                <h1 style="color: brown" th:text="${msg}"></h1>
+                <h1>
+                    <small>欢迎
+                        <span th:if="${session.user.type} == 1">普通用户</span>
+                        <span th:if="${session.user.type} == 0">管理员</span>
+                        【<span th:text="${session.user.name}"></span>】登录
+                    </small>
+                    <a class="btn btn-primary" th:href="@{/user/logout}">退出</a>
+                </h1>
+            </div>
+        </div>
+    </div>
+    <div style="height: 450px">
+        <div style="float: left">
+            <form th:action="@{/equip/add}" method="post">
+                设备名称：<input type="text" name="name" required>
+                编码：<input type="text" name="code" required>
+                价格：<input type="text" name="price" required style="width: 120px;"><br><br><br>
+                <div style="float: left;">设备描述：</div>
+                <textarea name="description" cols="70" rows="5" id="Intro" maxlength="40" required></textarea><br><br><br>
+                <div style="width: 300px;float: left;">
+                    领用人：
+                    <select name="user_name">
+                        <option th:each="user,userStat:${users}"
+                                th:value="${user.username}">
+                            <span th:text="${user.name}"></span>(<span th:text="${user.username}"></span>)
+                        </option>
+                    </select>
+                </div>
+                <div style="width: 255px;float: left;">
+                    存放地点：<input type="text" name="place" required>
+                </div>
+                <input type="submit" value="添加">
+                <input type="reset" value="取消" >
+            </form>
+        </div>
+        <div style="float: right">
+            <form th:action="@{/user/add}" method="post">
+                用户名：<input type="text" name="username" required><br><br><br>
+                用户密码：<input type="password" name="password" required><br><br><br>
+                真实姓名：<input type="text" name="name" required><br><br><br>
+                联系电话：<input type="text" name="phone" required><br><br><br>
+                电子邮箱：<input type="email" name="email" required><br><br><br>
+                <input type="submit" value="添加" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <input type="reset" value="取消" >
+            </form>
+        </div>
+    </div>
+
+    <h1 style="width: 800px; float: left;">
+        <small>设备管理</small>
+    </h1>
+    <div class="row clearfix">
+        <div class="col-md-12 column">
+            <table class="table table-hover table-striped">
+                <thead>
+                <tr>
+                    <th>序号</th>
+                    <th>资产编码</th>
+                    <th>名称</th>
+                    <th>价格</th>
+                    <th>存放地点</th>
+                    <th>领用人</th>
+                    <th>领用时间</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+
+                <tbody>
+
+                <tr th:each="equip,equipStart:${equipments}">
+                    <td th:text="${equip.id}"></td>
+                    <td th:text="${equip.code}"></td>
+                    <td th:text="${equip.name}"></td>
+                    <td th:text="${equip.price}"></td>
+                    <td th:text="${equip.place}"></td>
+                    <td th:text="${equip.user_name}"></td>
+                    <td th:text="${equip.add_time}"></td>
+                    <td>
+                        <a th:href="@{/equip/del(id=${equip.id})}">删除</a>
+                    </td>
+                </tr>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <hr>
+    <h1 style="width: 800px; float: left;">
+        <small>人员管理</small>
+    </h1>
+    <div class="row clearfix">
+        <div class="col-md-12 column">
+            <table class="table table-hover table-striped">
+                <thead>
+                <tr>
+                    <th>序号</th>
+                    <th>账号</th>
+                    <th>姓名</th>
+                    <th>密码</th>
+                    <th>电话</th>
+                    <th>邮箱</th>
+                    <th>上次登录时间</th>
+                    <th>类型</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+
+                <tbody>
+
+                <tr th:each="user,userStat:${users}">
+                    <td th:text="${user.id}"></td>
+                    <td th:text="${user.username}"></td>
+                    <td th:text="${user.name}"></td>
+                    <td th:text="${user.password}"></td>
+                    <td th:text="${user.phone}"></td>
+                    <td th:text="${user.email}"></td>
+                    <td th:text="${user.last_login_time}"></td>
+                    <td th:if="${user.type}==1">普通用户</td>
+                    <td th:if="${user.type}==0">管理员</td>
+                    <td>
+                        <a th:href="@{/user/fix(id=${user.id})}">重置密码</a>
+                    </td>
+                </tr>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

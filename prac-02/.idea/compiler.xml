@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="cloud-course-select9091" />
+        <module name="cloud-course8092" />
+        <module name="cloud-course-select9092" />
+        <module name="common" />
+        <module name="cloud-user8081" />
+        <module name="cloud-course8091" />
+        <module name="cloud-course-arrange9081" />
+        <module name="cloud-user8082" />
+        <module name="cloud-course-arrange9082" />
+        <module name="cloud-gateway9527" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="cloud-course8093" target="8" />
+      <module name="cloud-user" target="1.8" />
+      <module name="cloud-user8083" target="1.8" />
+      <module name="coud-course8091" target="8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>
